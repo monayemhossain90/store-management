@@ -7,6 +7,7 @@ const DeleteService = require("../../services/common/DeleteService");
 
 const DetailsByIDService = require("../../services/common/DetailsByIDService");
 const DropDownService = require("../../services/common/DropDownService");
+const ProductReportService = require("../../services/report/ProductReportService");
 
 
 exports.CreateProduct=async (req, res) => {
@@ -57,5 +58,10 @@ exports.ProductsDropDown=async (req, res) => {
     res.status(200).json(Result)
 }
 
+
+
+exports.ProductsReportByDate=async (req, res) => {
+    await ProductReportService(req,res)
+}
 
 

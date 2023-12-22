@@ -1,10 +1,9 @@
 import { Accordion, Container, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import {AiOutlineBank, AiOutlineUnorderedList, AiOutlineLogout, AiOutlineMenu, AiOutlineUser} from 'react-icons/ai';
-import {BsBagPlus, BsBagX, BsBox, BsCartPlus, BsCircle, BsGraphUp, BsPeople} from 'react-icons/bs';
+import {AiOutlineLogout, AiOutlineMenu, AiOutlineUser} from 'react-icons/ai';
+import {BsBagPlus, BsBox,BsCircle, BsGraphUp,} from 'react-icons/bs';
 import {RiDashboardLine} from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
-import { IoCreateOutline } from "react-icons/io5";
 import logo from "../../assets/images/Logo.svg"
 import {getUserDetails, removeSessions} from "../../helper/SessionHelper";
 import {useRef} from "react";
@@ -146,14 +145,16 @@ const MasterLayout = (props) => {
       icon: <BsGraphUp className="side-bar-item-icon" />,
       url: '/Report',
       subMenu: [
-        
-        
+        {
+          title: 'Product Report',
+          icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
+          url: '/ProductReportPage',
+        },
         {
           title: 'Purchase Report',
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
           url: '/PurchaseReportPage',
         },
-        
       ],
     },
   ];

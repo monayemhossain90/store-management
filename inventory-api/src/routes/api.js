@@ -82,6 +82,8 @@ router.get("/DeleteProduct/:id",AuthVerifyMiddleware,ProductsController.DeletePr
 router.get("/ProductsDetailsByID/:id",AuthVerifyMiddleware,ProductsController.ProductsDetailsByID);
 router.get("/ProductsDropDown",AuthVerifyMiddleware,ProductsController.ProductsDropDown);
 
+router.post("/ProductsReportByDate",AuthVerifyMiddleware,ProductsController.ProductsReportByDate);
+
 
 
 

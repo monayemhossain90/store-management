@@ -10,7 +10,32 @@ import {
     SetReturnByDateList,
     SetSalesByDateList
 } from "../redux/state-slice/reportSlice";
+import {SetProductReportDataList} from "../redux/state-slice/productSlice.js";
 const AxiosHeader={headers:{"token":getToken()}}
+
+
+
+
+//Product Report
+export async function ProductReportByDateRequest(fromDate,toDate) {
+    try {
+        store.dispatch(ShowLoader())
+        let PostBody={"FromDate":fromDate+"T00:00:00.000+00:00","ToDate":toDate+"T00:00:00.000+00:00"}
+        let URL = BaseURL+"/ProductsReportByDate";
+        const result = await axios.post(URL,PostBody,AxiosHeader);
+        store.dispatch(HideLoader());
+        if (result.status === 200) {
+            store.dispatch(SetProductReportDataList(result.data['data']))
+        }
+    }
+    catch (e) {
+        store.dispatch(HideLoader())
+        ErrorToast("Something Went Wrong")
+    }
+}
+
+
+
 
 export async function ExpensesByDateRequest(fromDate,toDate) {
     try {

@@ -7,6 +7,7 @@ import {DeleteProductRequest, ProductListRequest, UpdateStockRequest} from "../.
 import { selectProductList, selectProductListTotal } from "../../redux/state-slice/productSlice";
 import { DeleteAlert } from "../../helper/DeleteAlert";
 import {ErrorToast, SuccessToast} from "../../helper/ValidationHelper.js";
+import ProductListItem from "./ProductListItem.jsx";
 
 const ProductList = () => {
     let stockRef = useRef();
@@ -133,34 +134,12 @@ const ProductList = () => {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        {
-                                                            DataList.map((item, i) =>
-                                                                <tr key={i.toString()}>
-                                                                    <td><p className="text-xs text-start">{item.ProductName}</p></td>
-                                                                    <td><p className="text-xs text-start">{item.Unit}</p></td>
-                                                                    <td><p className="text-xs text-start">{item.Price}</p></td>
-                                                                    <td><p className="text-xs text-start">{Number(item.Unit *item.Price)}</p></td>
-                                                                    <td><p className="text-xs text-start">{item.BrandName}</p></td>
-                                                                    <td><p className="text-xs text-start">{item.CategoryName}</p></td>
-                                                                    <td>
-                                                                        <Link to={`/ProductUpdatePage/${item._id}`} className="btn text-info btn-outline-light p-2 mb-0 btn-sm">
-                                                                            <AiOutlineEdit size={15} />
-                                                                        </Link>
-                                                                        <button onClick={DeleteItem.bind(this, item._id)} className="btn btn-outline-light text-danger p-2 mb-0 btn-sm ms-2">
-                                                                            <AiOutlineDelete size={15} />
-                                                                        </button>
-                                                                    </td>
-                                                                    <td>
-                                                                        <input ref={(input)=>stockRef=input} type="number" style={{width: "170px"}}/>
-                                                                        <button className="btn text-info btn-outline-light p-2 ml-3 mb-0 btn-sm" onClick={()=>UpdateStock(Number(item.Unit)+ Number(stockRef.value), item._id)}>
-                                                                           Add
-                                                                        </button>
-                                                                        <button onClick={()=>UpdateStock(Number(item.Unit) - Number(stockRef.value), item._id)} className="btn btn-outline-light text-danger p-2 mb-0 btn-sm ms-2">
-                                                                           minus
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            )
+                                                        {DataList.map((item, i) =>(
+                                                                <>
+                                                                   <ProductListItem key={i.toString()} item={item} perPage={perPage} searchKeyword={searchKeyword}/>
+                                                                </>
+                                                                )
+                                                        )
                                                         }
                                                     </tbody>
                                                 </table>

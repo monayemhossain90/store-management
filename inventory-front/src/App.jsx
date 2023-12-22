@@ -1,7 +1,6 @@
 import LoginPage from "./pages/Users/LoginPage.jsx";
 import BrandCreatePage from "./pages/Brand/BrandCreatePage.jsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-
 import CategoryCreatePage from "./pages/Category/CategoryCreatePage.jsx";
 import PublicRoute from "./routes/PublicRoute.jsx";
 import DashboardPage from "./pages/Dashboard/DashboardPage.jsx";
@@ -22,13 +21,14 @@ import SupplierUpdatePage from "./pages/Supplier/SupplierUpdatePage.jsx";
 import SupplierListPage from "./pages/Supplier/SupplierListPage.jsx";
 import PurchaseCreatePage from "./pages/Purchase/PurchaseCreatePage.jsx";
 import PurchaseListPage from "./pages/Purchase/PurchaseListPage.jsx";
-import PurchaseReportPage from "./pages/Report/PurchaseReportPage.jsx";
 import Page404 from "./pages/NotFound/Page404.jsx";
 import SignUpPage from "./pages/Users/SignUpPage.jsx";
 import SignUpVerifyOtpPage from "./pages/Users/SignUpVerifyOtpPage.jsx";
 import SendOtpPage from "./pages/ForgotPassword/SendOtpPage.jsx";
 import VerifyOtpPage from "./pages/ForgotPassword/VerifyOtpPage.jsx";
 import CreatePasswordPage from "./pages/ForgotPassword/CreatePasswordPage.jsx";
+import ProductReportPage from "./pages/Report/ProductReportPage.jsx";
+import PurchaseReportPage from "./pages/Report/PurchaseReportPage.jsx";
 
 
 const App = () => {
@@ -63,9 +63,10 @@ const App = () => {
                   <Route exact path="/PurchaseCreatePage" element={<PrivateRoute><PurchaseCreatePage/></PrivateRoute>} />
                   <Route exact path="/PurchaseListPage" element={<PrivateRoute><PurchaseListPage/></PrivateRoute>} />
 
+                  <Route exact path="/ProductReportPage" element={<PrivateRoute><ProductReportPage/></PrivateRoute>} />
                   <Route exact path="/PurchaseReportPage" element={<PrivateRoute><PurchaseReportPage/></PrivateRoute>} />
-                
-             
+
+
                   <Route path="*" element={<Page404/>}/>
 
                   <Route exact path="/Login" element={<PublicRoute><LoginPage/></PublicRoute>}/>

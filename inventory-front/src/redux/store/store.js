@@ -8,6 +8,7 @@ import {reportSliceReducer} from "../state-slice/reportSlice";
 import {supplierSliceReducer} from "../state-slice/supplierSlice";
 import {productSliceReducer} from "../state-slice/productSlice";
 import {dashboardSliceReducer} from "../state-slice/dashboardSlice";
+import {modalSliceReducer} from "../state-slice/modalSlice.js";
 
 
 export default configureStore({
@@ -21,6 +22,7 @@ export default configureStore({
         purchase:purchaseSliceReducer,
         report:reportSliceReducer,
         supplier:supplierSliceReducer,
-        dashboard:dashboardSliceReducer
+        dashboard:dashboardSliceReducer,
+        modal:modalSliceReducer,
     }
 })

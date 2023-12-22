@@ -6,7 +6,8 @@ export const productSlice=createSlice({
         ListTotal:0,
         ProductBrandDropDown:[],
         ProductCategoryDropDown:[],
-        ProductData:{}
+        ProductData:{},
+        ProductReportDataList:[]
     },
     reducers:{
         SetProductList:(state,action)=>{
@@ -23,13 +24,18 @@ export const productSlice=createSlice({
         },
         SetProductData:(state,action)=>{
             state.ProductData=action.payload
-        }
+        },
+        SetProductReportDataList:(state,action)=>{
+            state.ProductReportDataList=action.payload
+        },
     }
 })
 
-export const {SetProductList,SetProductListTotal,SetProductBrandDropDown,SetProductCategoryDropDown, SetProductData}=productSlice.actions;
+export const {SetProductList,SetProductListTotal,SetProductBrandDropDown,SetProductCategoryDropDown, SetProductData, SetProductReportDataList}=productSlice.actions;
 export const selectProductList = (state) => state.product.List;
 export const selectProductListTotal = (state) => state.product.ListTotal;
 export const selectProductCategoryDropDown = (state) => state.product.ProductCategoryDropDown;
 export const selectProductBrandDropDown = (state) => state.product.ProductBrandDropDown;
+export const selectProductReportDataList = (state) => state.product.ProductReportDataList;
+
 export const productSliceReducer = productSlice.reducer;

@@ -7,9 +7,10 @@ import {
     SetProductBrandDropDown,
     SetProductCategoryDropDown, SetProductData,
     SetProductList,
-    SetProductListTotal,
+    SetProductListTotal, SetProductReportDataList,
 } from "../redux/state-slice/productSlice";
 import {ErrorToast, SuccessToast} from "../helper/ValidationHelper";
+import {SetExpensesByDateList} from "../redux/state-slice/reportSlice.js";
 const AxiosHeader={headers:{"token":getToken()}}
 
 export async function ProductListRequest(pageNo, perPage, searchKeyword) {
@@ -250,6 +251,10 @@ export async function DeleteProductRequest(ObjectID) {
         return  false
     }
 }
+
+
+
+
 
 
 
