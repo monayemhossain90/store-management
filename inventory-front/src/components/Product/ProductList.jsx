@@ -95,7 +95,7 @@ const ProductList = () => {
                                                             <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Brand</td>
                                                             <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Categories</td>
                                                             <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</td>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Issues/Stock</td>
+                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Issue/Stock</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

@@ -46,12 +46,12 @@ const AddModal2 = () => {
                 <Modal.Header closeButton >
                 </Modal.Header>
                 <Modal.Body>
-                    <h3 className="text-center mb-3">Edit Product Unit</h3>
+                    <h3 className="text-center mb-3">Restock Product Unit</h3>
                     <div className="text-center">
                         <input value={unit} onChange={(e)=>setUnit(e.target.value)} className="w-50 px-3" type="number"/>
                         <div className=" d-flex justify-content-center mt-3">
                             <button onClick={()=>handleCancel()} className="btn btn-sm btn-danger">Cancel</button>
-                            <button onClick={UpdateStock} className="btn btn-sm btn-secondary mx-2">Add</button>
+                            <button onClick={UpdateStock} className="btn btn-sm btn-secondary mx-2">Restock</button>
                         </div>
                     </div>
 

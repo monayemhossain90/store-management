@@ -3,7 +3,7 @@ import { Container, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineLogout, AiOutlineMenu, AiOutlineUser} from 'react-icons/ai';
 import {RiDashboardLine} from "react-icons/ri";
-import logo from "../../assets/images/Logo.svg"
+import logo from "../../assets/images/logo.png"
 import {getUserDetails, removeSessions} from "../../helper/SessionHelper";
 const SidebarMenu = (props) => {
     let contentRef, sideNavRef,topNavRef = useRef();

@@ -51,9 +51,9 @@ const ProductListItem = ({item, perPage, searchKeyword}) => {
                             dispatch(SetExistUnit(Unit))
                             dispatch(SetAddModalShow(true))
                         }}
-                        className="btn text-info btn-outline-light p-2 ml-3 mb-0 btn-sm"
+                        className="btn btn-primary text-info btn-outline-light p-2 ml-3 mb-0 btn-sm"
                     >
-                        Add
+                      Restock
                     </button>
 
 
@@ -63,9 +63,9 @@ const ProductListItem = ({item, perPage, searchKeyword}) => {
                             dispatch(SetExistUnit(Unit))
                             dispatch(SetMinusModalShow(true))
                         }}
-                        className="btn btn-outline-light text-danger p-2 mb-0 btn-sm ms-2"
+                        className="btn btn-success text-danger btn-outline-light  p-2 mb-0 btn-sm ms-2"
                     >
-                        Minus
+                        Issue
                     </button>
                 </td>
             </tr>

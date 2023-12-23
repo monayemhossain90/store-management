@@ -126,9 +126,9 @@ const Dashboard = () => {
                                 dispatch(SetExistUnit(ProductList[i]['Unit']))
                                 dispatch(SetAddModalShow2(true))
                             }}
-                            className="btn text-info btn-outline-light p-2 ml-3 mb-0 btn-md"
+                            className="btn btn-primary text-info  btn-outline-light p-2 ml-3 mb-0 btn-md"
                         >
-                            Add
+                            Restock
                         </button>
 
                         <button
@@ -137,9 +137,9 @@ const Dashboard = () => {
                                 dispatch(SetExistUnit(ProductList[i]['Unit']))
                                 dispatch(SetMinusModalShow2(true))
                             }}
-                            className="btn btn-outline-light text-danger p-2 mb-0 btn-md ms-2"
+                            className="btn btn-success text-danger btn-outline-light  p-2 mb-0 btn-md ms-2"
                         >
-                            Minus
+                            Issue
                         </button></>
                 )
 
@@ -163,7 +163,7 @@ const Dashboard = () => {
            <Fragment>
                <div className="container-fluid">
                    <div className="row">
-                       <h3>Inventory Stats</h3>
+                       <h3>Inventory States</h3>
                        <div className="col-md-4 p-2">
                            <div className="card products text-white">
                                <div className="card-body d-flex align-items-center gap-3">
@@ -186,7 +186,7 @@ const Dashboard = () => {
                                        <span>Total Store Value</span>
                                        <br/>
                                        <span className="text-white" style={{fontSize:"20px"}}>
-                                           <CurrencyFormat className="text-white" value={StoreValue || 0} displayType={'text'} thousandSeparator={true} prefix={'৳ '} />
+                                           <CurrencyFormat className="text-white" value={StoreValue || 0} displayType={'text'} thousandSeparator={true} prefix={'Tk '} />
                                        </span>
                                    </div>
                                </div>

@@ -4,7 +4,7 @@ import {AiOutlineLogout, AiOutlineMenu, AiOutlineUser} from 'react-icons/ai';
 import {BsBagPlus, BsBox,BsCircle, BsGraphUp,} from 'react-icons/bs';
 import {RiDashboardLine} from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
-import logo from "../../assets/images/Logo.svg"
+import logo from "../../assets/images/logo.png"
 import {getUserDetails, removeSessions} from "../../helper/SessionHelper";
 import {useRef} from "react";
 const MasterLayout = (props) => {
