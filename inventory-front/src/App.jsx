@@ -16,11 +16,6 @@ import ProductCreatePage from "./pages/Product/ProductCreatePage.jsx";
 import ProductListPage from "./pages/Product/ProductListPage.jsx";
 import FullscreenLoader from "./components/MasterLayout/FullscreenLoader.jsx";
 import ProductUpdatePage from "./pages/Product/ProductUpdatePage.jsx";
-import SupplierCreatePage from "./pages/Supplier/SupplierCreatePage.jsx";
-import SupplierUpdatePage from "./pages/Supplier/SupplierUpdatePage.jsx";
-import SupplierListPage from "./pages/Supplier/SupplierListPage.jsx";
-import PurchaseCreatePage from "./pages/Purchase/PurchaseCreatePage.jsx";
-import PurchaseListPage from "./pages/Purchase/PurchaseListPage.jsx";
 import Page404 from "./pages/NotFound/Page404.jsx";
 import SignUpPage from "./pages/Users/SignUpPage.jsx";
 import SignUpVerifyOtpPage from "./pages/Users/SignUpVerifyOtpPage.jsx";
@@ -28,7 +23,6 @@ import SendOtpPage from "./pages/ForgotPassword/SendOtpPage.jsx";
 import VerifyOtpPage from "./pages/ForgotPassword/VerifyOtpPage.jsx";
 import CreatePasswordPage from "./pages/ForgotPassword/CreatePasswordPage.jsx";
 import ProductReportPage from "./pages/Report/ProductReportPage.jsx";
-import PurchaseReportPage from "./pages/Report/PurchaseReportPage.jsx";
 
 
 const App = () => {
@@ -52,19 +46,12 @@ const App = () => {
                   <Route exact path="/ProductListPage" element={<PrivateRoute><ProductListPage/></PrivateRoute>} />
 
 
-                  <Route exact path="/SupplierCreatePage" element={<PrivateRoute><SupplierCreatePage/></PrivateRoute>} />
-                  <Route exact path="/SupplierUpdatePage/:id" element={<PrivateRoute><SupplierUpdatePage/></PrivateRoute>} />
-                  <Route exact path="/SupplierListPage" element={<PrivateRoute><SupplierListPage/></PrivateRoute>} />
-
                   <Route path="/BrandCreatePage" element={<PrivateRoute><BrandCreatePage/></PrivateRoute>}/>
                   <Route path="/BrandUpdatePage/:id" element={<PrivateRoute><BrandUpdatePage/></PrivateRoute>}/>
                   <Route exact path="/BrandListPage" element={<PrivateRoute><BrandListPage/></PrivateRoute>} />
 
-                  <Route exact path="/PurchaseCreatePage" element={<PrivateRoute><PurchaseCreatePage/></PrivateRoute>} />
-                  <Route exact path="/PurchaseListPage" element={<PrivateRoute><PurchaseListPage/></PrivateRoute>} />
 
                   <Route exact path="/ProductReportPage" element={<PrivateRoute><ProductReportPage/></PrivateRoute>} />
-                  <Route exact path="/PurchaseReportPage" element={<PrivateRoute><PurchaseReportPage/></PrivateRoute>} />
 
 
                   <Route path="*" element={<Page404/>}/>

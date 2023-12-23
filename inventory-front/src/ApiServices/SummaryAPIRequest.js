@@ -5,7 +5,7 @@ import {BaseURL} from "../helper/config";
 import {HideLoader, ShowLoader} from "../redux/state-slice/settingsSlice";
 import {
     SetExpenseChart,
-    SetExpenseTotal, SetPurchaseChart, SetPurchaseTotal,
+    SetExpenseTotal,
     SetReturnChart,
     SetReturnTotal,
     SetSaleChart, SetSaleTotal
@@ -82,31 +82,6 @@ export async function SaleSummary(){
             }else{
                 store.dispatch(SetSaleChart([]))
                 store.dispatch(SetSaleTotal(0))
-            }
-        }
-        else{
-            ErrorToast("Something Went Wrong")
-        }
-    }
-    catch (e){
-        store.dispatch(HideLoader())
-        ErrorToast("Something Went Wrong")
-    }
-}
-
-export async function PurchaseSummary(){
-    try {
-        store.dispatch(ShowLoader())
-        let URL=BaseURL+"/PurchaseSummary";
-        let res=await axios.get(URL,AxiosHeader)
-        store.dispatch(HideLoader())
-        if(res.status===200 && res.data['status'] === "success"){
-            if(res.data['data'][0]['Last30Days'].length > 0){
-                store.dispatch(SetPurchaseChart(res.data['data'][0]['Last30Days']))
-                store.dispatch(SetPurchaseTotal(res.data['data'][0]['Total'][0]['TotalAmount']))
-            }else{
-                store.dispatch(SetPurchaseChart([]))
-                store.dispatch(SetPurchaseTotal(0))
             }
         }
         else{

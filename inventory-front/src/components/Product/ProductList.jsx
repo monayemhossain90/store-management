@@ -1,16 +1,11 @@
 import {Fragment, useEffect, useRef, useState} from 'react';
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import ReactPaginate from "react-paginate";
-import {DeleteProductRequest, ProductListRequest, UpdateStockRequest} from "../../ApiServices/ProductApiRequest";
+import {ProductListRequest} from "../../ApiServices/ProductApiRequest";
 import { selectProductList, selectProductListTotal } from "../../redux/state-slice/productSlice";
-import { DeleteAlert } from "../../helper/DeleteAlert";
-import {ErrorToast, SuccessToast} from "../../helper/ValidationHelper.js";
 import ProductListItem from "./ProductListItem.jsx";
 
 const ProductList = () => {
-    let stockRef = useRef();
 
     let [searchKeyword, setSearchKeyword] = useState("0");
     let [perPage, setPerPage] = useState(20);
@@ -51,36 +46,6 @@ const ProductList = () => {
         })
     }
 
-
-
-
-
-    //DeleteItem
-    const DeleteItem = async (id) => {
-        let Result = await DeleteAlert();
-        if (Result.isConfirmed === true) {
-            let DeleteResult = await DeleteProductRequest(id);
-            if (DeleteResult === true) {
-                await ProductListRequest(1, perPage, searchKeyword);
-            }
-        }
-    }
-
-
-
-    ///Update issues & Product
-    const UpdateStock = async (unit, id) => {
-        let stock = stockRef.value.trim();
-        if(stock < 1){
-            ErrorToast("Stock is minimum 1 required");
-        }else{
-          let result = await UpdateStockRequest(unit,id);
-          if(result===true){
-              stockRef.value=null;
-              await ProductListRequest(1, perPage, searchKeyword)
-          }
-        }
-    }
 
 
 

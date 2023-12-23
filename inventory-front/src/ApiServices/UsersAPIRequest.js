@@ -15,48 +15,34 @@ const AxiosHeader={headers:{"token":getToken()}}
 export async function LoginRequest(email,password,SignInBtnRef){
 
    try {
-       debugger;
        store.dispatch(ShowLoader())
        SignInBtnRef.classList.add('btnCapitalize');
        SignInBtnRef.innerHTML= "<span class=\"spinner-border spinner-border-sm me-1\" role=\"status\" aria-hidden=\"true\"></span>\n" +
           "  Processing...";
-       debugger;
        let URL=BaseURL+"/Login";
-       debugger;
        let PostBody={"email":email,"password":password}
-       debugger;
        let res =await axios.post(URL,PostBody);
        store.dispatch(HideLoader())
        SignInBtnRef.classList.remove('btnCapitalize');
        SignInBtnRef.innerHTML="Sign In";
        if(res.status===200){
-           if(res.data['status'] === "success"){
                let MyToken = res.data['token'];
                let userDetails = res.data['data'];
                setToken(MyToken);
                setUserDetails(userDetails);
                SuccessToast("Sign in Success");
                return true;
-           }
-           else{
-               ErrorToast("Email or Password Wrong!");
-               return  false;
-           }
-       }
-       else{
-           store.dispatch(HideLoader());
-           SignInBtnRef.classList.remove('btnCapitalize');
-           SignInBtnRef.innerHTML="Sign In";
-           ErrorToast("Something Went Wrong");
-           return false;
        }
    }
    catch (e) {
-       store.dispatch(HideLoader())
+       store.dispatch(HideLoader());
        SignInBtnRef.classList.remove('btnCapitalize');
-       SignInBtnRef.innerHTML="Sign In";
-       ErrorToast("Something Went Wrong")
-       return false;
+       SignInBtnRef.innerHTML="Sign Up";
+       if(e['message'] === "Request failed with status code 404"){
+           ErrorToast("No User Found");
+       }else{
+           ErrorToast("Something Went Wrong");
+       }
    }
 }
 
@@ -79,36 +65,21 @@ export async function SignUpEmailVerifyRequest(email,SignUpBtnRef){
             SignUpBtnRef.innerHTML="Sign Up";
 
           if(res.status === 200){
-                if(res.data['status'] === "fail"){
-                    if(res.data['data'] === "EmailAlreadyExist"){
-                        ErrorToast("Email Already Exist");
-                        return false;
-                    }
-                    else{
-                        ErrorToast("Something Went Wrong");
-                        return false;
-                    }
-                }
-                else{
-                    SuccessToast("A 6 Digit verification code has been sent to your email address. ");
-                    return true;
-                }
+              SuccessToast("A 6 Digit verification code has been sent to your email address. ");
+              return true;
             }
-            else{
-                ErrorToast("Something Went Wrong");
-              return false;
-            }
-
         }
-        catch(error) {
+        catch(e) {
             store.dispatch(HideLoader());
             SignUpBtnRef.classList.remove('btnCapitalize');
             SignUpBtnRef.innerHTML="Sign Up";
-            ErrorToast("Something Went Wrong");
-            return false;
+            if(e['message'] === "Request failed with status code 409"){
+                ErrorToast("Email Already Exist");
+            }else{
+                ErrorToast("Something Went Wrong");
+            }
         }
-    
-        
+
 }
 
 //SignUpVerifyOTP--Step-02-DataInsert
@@ -132,33 +103,20 @@ export async function SignUpVerifyOTPRequest(Email,FirstName,LastName,Mobile,Pas
          store.dispatch(HideLoader())
          ProcessingBtnRef.classList.remove('btnCapitalize');
          ProcessingBtnRef.innerHTML="Verify";
-         if(res.status === 200) {
-             if(res.data['status'] === "fail"){
-                 if(res.data['data'] === "InvalidOTPCode"){
-                     ErrorToast("Invalid Verification Code");
-                     return false;
-                 }
-                 else{
-                     ErrorToast("Something Went Wrong");
-                     return false;
-                 }
-             }
-             else{
-                 SuccessToast("Sign Up Success ");
-                 return true;
-             }
-         }
-         else{
-             ErrorToast("Something Went Wrong");
-             return false;
+         if(res.status === 201) {
+             SuccessToast("Sign Up Success ");
+             return true;
          }
      }
-     catch(error){
-         store.dispatch(HideLoader())
+     catch(e){
+         store.dispatch(HideLoader());
          ProcessingBtnRef.classList.remove('btnCapitalize');
-         ProcessingBtnRef.innerHTML="Verify";
-         ErrorToast("Something Went Wrong");
-         return false;
+         ProcessingBtnRef.innerHTML="Sign Up";
+         if(e['message'] === "Request failed with status code 400"){
+             ErrorToast("Invalid OTP Code");
+         }else{
+             ErrorToast("Something Went Wrong");
+         }
      }
 }
 

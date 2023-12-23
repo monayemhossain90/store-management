@@ -30,8 +30,16 @@ export async function BrandListRequest(pageNo, perPage, searchKeyword) {
         }
     }
     catch (e) {
-        ErrorToast("Something Went Wrong")
         store.dispatch(HideLoader())
+        if(e['message'] === "Request failed with status code 401"){
+            ErrorToast("Token Authorized");
+            localStorage.clear();
+            setTimeout(()=>{
+                window.location.href="/Login"
+            },500)
+        }else{
+            ErrorToast("Something Went Wrong");
+        }
     }
 }
 
@@ -87,13 +95,11 @@ export async function FillBrandFormRequest(ObjectID) {
             store.dispatch(SetBrandName(BrandData['BrandName']));
             return  true;
         } else {
-            debugger;
             ErrorToast("Request Fail ! Try Again")
             return false;
         }
     }
     catch (e) {
-        debugger;
         ErrorToast("Something Went Wrong")
         store.dispatch(HideLoader())
         return  false
@@ -152,25 +158,29 @@ export async function DeleteBrandRequest(ObjectID) {
     try {
         store.dispatch(ShowLoader())
         let URL = BaseURL+"/DeleteBrand/"+ObjectID;
-        const result = await axios.get(URL,AxiosHeader)
+        const res = await axios.delete(URL,AxiosHeader)
         store.dispatch(HideLoader())
-        if (result.status === 200 && result.data['status'] === "associate") {
-            ErrorToast("Failed! This Brand is "+result.data['data'])
-            return  false;
-        }
-        if (result.status === 200 && result.data['status'] === "success") {
+        if (res.status === 200){
             SuccessToast("Brand Delete Success");
-            return true
-        }
-        else {
-            ErrorToast("Request Fail ! Try Again")
-            return false;
+            return true;
         }
     }
-    catch (e) {
-        ErrorToast("Something Went Wrong")
+    catch (error) {
         store.dispatch(HideLoader())
-        return  false
+        if(error?.response?.status === 403) {
+            ErrorToast("Failled! This Brand is associated with Product")
+        }
+        else if(error?.response?.status === 401){
+            ErrorToast("Token Authorized");
+            localStorage.clear();
+            setTimeout(()=>{
+                window.location.href="/Login"
+            },500)
+        }
+        else{
+            ErrorToast("Something Went Wrong!");
+        }
+        return false
     }
 }
 

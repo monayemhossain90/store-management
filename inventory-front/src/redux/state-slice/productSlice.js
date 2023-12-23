@@ -7,7 +7,8 @@ export const productSlice=createSlice({
         ProductBrandDropDown:[],
         ProductCategoryDropDown:[],
         ProductData:{},
-        ProductReportDataList:[]
+        ProductReportDataList:[],
+        Products:[]
     },
     reducers:{
         SetProductList:(state,action)=>{
@@ -28,14 +29,29 @@ export const productSlice=createSlice({
         SetProductReportDataList:(state,action)=>{
             state.ProductReportDataList=action.payload
         },
+        SetProducts:(state,action)=>{
+            state.Products=action.payload
+        },
     }
 })
 
-export const {SetProductList,SetProductListTotal,SetProductBrandDropDown,SetProductCategoryDropDown, SetProductData, SetProductReportDataList}=productSlice.actions;
+export const {SetProductList,SetProductListTotal,SetProductBrandDropDown,SetProductCategoryDropDown, SetProductData, SetProductReportDataList, SetProducts}=productSlice.actions;
 export const selectProductList = (state) => state.product.List;
 export const selectProductListTotal = (state) => state.product.ListTotal;
 export const selectProductCategoryDropDown = (state) => state.product.ProductCategoryDropDown;
 export const selectProductBrandDropDown = (state) => state.product.ProductBrandDropDown;
 export const selectProductReportDataList = (state) => state.product.ProductReportDataList;
+export const selectProducts = (state) => state.product.Products;
+
+export const selectStoreValue = (state) =>{
+    const products =state.product.Products;
+    if(products.length>0){
+        const totalValue = products.reduce((pv, cv)=>{
+            return Number(pv) + Number(cv.Unit * cv.Price)
+        },0)
+
+        return totalValue;
+    }
+}
 
 export const productSliceReducer = productSlice.reducer;

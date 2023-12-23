@@ -7,10 +7,9 @@ import {
     SetProductBrandDropDown,
     SetProductCategoryDropDown, SetProductData,
     SetProductList,
-    SetProductListTotal, SetProductReportDataList,
+    SetProductListTotal, SetProducts,
 } from "../redux/state-slice/productSlice";
 import {ErrorToast, SuccessToast} from "../helper/ValidationHelper";
-import {SetExpensesByDateList} from "../redux/state-slice/reportSlice.js";
 const AxiosHeader={headers:{"token":getToken()}}
 
 export async function ProductListRequest(pageNo, perPage, searchKeyword) {
@@ -34,10 +33,17 @@ export async function ProductListRequest(pageNo, perPage, searchKeyword) {
     }
     catch (e) {
         store.dispatch(HideLoader())
-        ErrorToast("Something Went Wrong")
+        if(e['message'] === "Request failed with status code 401"){
+            ErrorToast("Token Authorized");
+            localStorage.clear();
+            setTimeout(()=>{
+                window.location.href="/Login"
+            },500)
+        }else{
+            ErrorToast("Something Went Wrong");
+        }
     }
 }
-
 
 
 
@@ -143,13 +149,11 @@ export async function FillProductFormRequest(ObjectID) {
             store.dispatch(SetProductData(res.data['data']));
             return true;
         } else {
-            debugger;
             ErrorToast("Request Fail ! Try Again")
             return false;
         }
     }
     catch (e) {
-        debugger;
         store.dispatch(HideLoader())
         ErrorToast("Something Went Wrong")
         return  false
@@ -158,38 +162,34 @@ export async function FillProductFormRequest(ObjectID) {
 
 
 //UpdateProduct
-export async function UpdateProductRequest(productName,brandID,categoryID,unit,details,ObjectID,ProcessingBtnRef) {
+export async function UpdateProductRequest(productName,brandID,categoryID,unit, price,details,ObjectID,ProcessingBtnRef) {
     try {
         store.dispatch(ShowLoader())
         ProcessingBtnRef.classList.add('btnCapitalize');
         ProcessingBtnRef.innerHTML= "<span class=\"spinner-border spinner-border-sm me-1\" role=\"status\" aria-hidden=\"true\"></span>\n" +
             "  Processing...";
         let URL = BaseURL+"/UpdateProduct/"+ObjectID;
-        let PostBody = {CategoryID:categoryID,BrandID:brandID,ProductName:productName,Unit:unit,Price:price,Details:details};
+        let PostBody = {CategoryID:categoryID,BrandID:brandID,ProductName:productName,Unit:unit,Price:price, Details:details};
         const res = await axios.post(URL,PostBody,AxiosHeader);
         store.dispatch(HideLoader())
         ProcessingBtnRef.classList.remove('btnCapitalize');
         ProcessingBtnRef.innerHTML="Save Change";
         if(res.status === 200){
-            if(res.data['status'] === "success"){
-                SuccessToast("Product Update Success");
-                return true;
-            }else{
-                ErrorToast("Something Went Wrong")
-                return false;
-            }
-        }
-        else {
-            ErrorToast("Something Went Wrong")
-            return false;
+            SuccessToast("Product Update Success");
+            return true;
         }
     }
     catch (e) {
         store.dispatch(HideLoader())
-        ProcessingBtnRef.classList.remove('btnCapitalize');
-        ProcessingBtnRef.innerHTML="Save Change";
-        ErrorToast("Something Went Wrong")
-        return  false
+        if(e['message'] === "Request failed with status code 401"){
+            ErrorToast("Token Authorized");
+            localStorage.clear();
+            setTimeout(()=>{
+                window.location.href="/Login"
+            },500)
+        }else{
+            ErrorToast("Something Went Wrong");
+        }
     }
 }
 
@@ -202,25 +202,22 @@ export async function UpdateStockRequest(unit,ObjectID) {
         let PostBody = {Unit:unit};
         const res = await axios.post(URL,PostBody,AxiosHeader);
         store.dispatch(HideLoader())
-
         if(res.status === 200){
-            if(res.data['status'] === "success"){
-                SuccessToast("Product Update Success");
-                return true;
-            }else{
-                ErrorToast("Something Went Wrong")
-                return false;
-            }
-        }
-        else {
-            ErrorToast("Something Went Wrong")
-            return false;
+            SuccessToast("Product Quantity Update Success");
+            return true;
         }
     }
     catch (e) {
         store.dispatch(HideLoader())
-        ErrorToast("Something Went Wrong")
-        return false
+        if(e['message'] === "Request failed with status code 401"){
+            ErrorToast("Token Authorized");
+            localStorage.clear();
+            setTimeout(()=>{
+                window.location.href="/Login"
+            },500)
+        }else{
+            ErrorToast("Something Went Wrong");
+        }
     }
 }
 
@@ -230,27 +227,58 @@ export async function DeleteProductRequest(ObjectID) {
     try {
         store.dispatch(ShowLoader())
         let URL = BaseURL+"/DeleteProduct/"+ObjectID;
-        const result = await axios.get(URL,AxiosHeader)
+        const res = await axios.delete(URL,AxiosHeader)
         store.dispatch(HideLoader());
-        if (result.status === 200 && result.data['status'] === "associate") {
-            ErrorToast("Failled! Product is "+result.data['data'])
-            return false;
-        }
-        else if (result.status === 200 && result.data['status'] === "success") {
+        if(res.status === 200){
             SuccessToast("Product Delete Success");
             return  true
         }
-        else {
-            ErrorToast("Request Fail ! Try Again")
-            return false;
+    }
+    catch (e) {
+        store.dispatch(HideLoader())
+        if(e['message'] === "Request failed with status code 401"){
+            ErrorToast("Token Authorized");
+            localStorage.clear();
+            setTimeout(()=>{
+                window.location.href="/Login"
+            },500)
+        }else{
+            ErrorToast("Something Went Wrong");
+        }
+    }
+}
+
+
+
+
+export async function GetAllProductsRequest(searchKeyword) {
+    try {
+        store.dispatch(ShowLoader())
+        let URL = BaseURL+"/GetAllProducts/"+searchKeyword;
+        const res = await axios.get(URL,AxiosHeader)
+        store.dispatch(HideLoader())
+        if (res.status === 200) {
+            if (res.data['data'].length > 0) {
+                store.dispatch(SetProducts(res.data['data']))
+            } else {
+                store.dispatch(SetProducts([]))
+            }
         }
     }
     catch (e) {
-        ErrorToast("Something Went Wrong")
         store.dispatch(HideLoader())
-        return  false
+        if(e['message'] === "Request failed with status code 401"){
+            ErrorToast("Token Authorized");
+            localStorage.clear();
+            setTimeout(()=>{
+                window.location.href="/Login"
+            },500)
+        }else{
+            ErrorToast("Something Went Wrong");
+        }
     }
 }
+
 
 
 

@@ -3,11 +3,8 @@ const AuthVerifyMiddleware=require("../middlewares/AuthVerifyMiddleware");
 const UsersController = require("../controllers/Users/UsersController");
 const BrandsController = require("../controllers/Brands/BrandsController");
 const CategoriesController = require("../controllers/Categories/CategoriesController");
-const SuppliersController = require("../controllers/Suppliers/SuppliersController");
 const ProductsController = require("../controllers/Products/ProductsController");
-const PurchasesController = require("../controllers/Purchases/PurchasesController");
-const ReportController = require("../controllers/Report/ReportController");
-const SummaryController = require("../controllers/Summary/SummaryController");
+
 
 const router = express.Router();
 
@@ -43,7 +40,7 @@ router.post("/CreateBrand", AuthVerifyMiddleware, BrandsController.CreateBrand);
 router.post("/UpdateBrand/:id", AuthVerifyMiddleware, BrandsController.UpdateBrand);
 router.get("/BrandList/:pageNo/:perPage/:searchKeyword", AuthVerifyMiddleware,BrandsController.BrandList);
 router.get("/BrandDropDown", AuthVerifyMiddleware, BrandsController.BrandDropDown);
-router.get("/DeleteBrand/:id",BrandsController.DeleteBrand);
+router.delete("/DeleteBrand/:id",BrandsController.DeleteBrand);
 router.get("/BrandDetailsByID/:id",BrandsController.BrandDetailsByID);
 
 
@@ -53,22 +50,8 @@ router.post("/CreateCategory",AuthVerifyMiddleware,CategoriesController.CreateCa
 router.post("/UpdateCategory/:id",AuthVerifyMiddleware,CategoriesController.UpdateCategory);
 router.get("/CategoriesList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,CategoriesController.CategoriesList);
 router.get("/CategoriesDropDown",AuthVerifyMiddleware,CategoriesController.CategoriesDropDown);
-router.get("/DeleteCategory/:id",AuthVerifyMiddleware,CategoriesController.DeleteCategory);
+router.delete("/DeleteCategory/:id",AuthVerifyMiddleware,CategoriesController.DeleteCategory);
 router.get("/CategoryDetailsByID/:id",AuthVerifyMiddleware,CategoriesController.CategoryDetailsByID);
-
-
-
-
-
-// Suppliers
-router.post("/CreateSupplier",AuthVerifyMiddleware,SuppliersController.CreateSupplier);
-router.post("/UpdateSupplier/:id",AuthVerifyMiddleware,SuppliersController.UpdateSupplier);
-router.get("/SuppliersList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,SuppliersController.SuppliersList);
-router.get("/SuppliersDropDown",AuthVerifyMiddleware,SuppliersController.SuppliersDropDown);
-router.get("/DeleteSupplier/:id",AuthVerifyMiddleware,SuppliersController.DeleteSupplier);
-router.get("/SupplierDetailsByID/:id",AuthVerifyMiddleware,SuppliersController.SupplierDetailsByID);
-
-
 
 
 
@@ -78,28 +61,13 @@ router.get("/SupplierDetailsByID/:id",AuthVerifyMiddleware,SuppliersController.S
 router.post("/CreateProduct",AuthVerifyMiddleware,ProductsController.CreateProduct);
 router.post("/UpdateProduct/:id",AuthVerifyMiddleware,ProductsController.UpdateProduct);
 router.get("/ProductsList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,ProductsController.ProductsList);
-router.get("/DeleteProduct/:id",AuthVerifyMiddleware,ProductsController.DeleteProduct);
+router.delete("/DeleteProduct/:id",AuthVerifyMiddleware,ProductsController.DeleteProduct);
 router.get("/ProductsDetailsByID/:id",AuthVerifyMiddleware,ProductsController.ProductsDetailsByID);
 router.get("/ProductsDropDown",AuthVerifyMiddleware,ProductsController.ProductsDropDown);
 
 router.post("/ProductsReportByDate",AuthVerifyMiddleware,ProductsController.ProductsReportByDate);
+router.get("/GetAllProducts/:searchKeyword",AuthVerifyMiddleware,ProductsController.GetAllProducts);
 
-
-
-
-//Purchases
-router.post("/CreatePurchase",AuthVerifyMiddleware,PurchasesController.CreatePurchase);
-router.get("/PurchasesList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,PurchasesController.PurchasesList);
-router.get("/PurchasesDelete/:id",AuthVerifyMiddleware,PurchasesController.PurchasesDelete);
-
-
-//Report
-
-router.post("/PurchaseByDate",AuthVerifyMiddleware,ReportController.PurchaseByDate);
-
-//Summary
-
-router.get("/PurchaseSummary",AuthVerifyMiddleware,SummaryController.PurchaseSummary);
 
 
 

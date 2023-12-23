@@ -55,26 +55,6 @@ const MasterLayout = (props) => {
       url: '/',
       subMenu: [],
     },
-    
-    {
-      title: 'Supplier',
-      icon: <TbTruckDelivery className="side-bar-item-icon" />,
-      url: '/Supplier',
-      subMenu: [
-        {
-          title: 'New Supplier',
-          icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: '/SupplierCreatePage',
-        },
-        {
-          title: 'Supplier List',
-          icon: (
-              <BsCircle size={16} className="side-bar-subitem-icon" />
-          ),
-          url: '/SupplierListPage',
-        },
-      ],
-    },
    
     {
       title: 'Product',
@@ -119,25 +99,6 @@ const MasterLayout = (props) => {
         },
       ],
     },
-    {
-      title: 'Purchase',
-      icon: <BsBagPlus className="side-bar-item-icon" />,
-      url: '/Purchase',
-      subMenu: [
-        {
-          title: 'New Purchase',
-          icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: '/PurchaseCreatePage',
-        },
-        {
-          title: 'Purchase List',
-          icon: (
-              <BsCircle size={16} className="side-bar-subitem-icon" />
-          ),
-          url: '/PurchaseListPage',
-        },
-      ],
-    },
    
     
     {
@@ -149,12 +110,7 @@ const MasterLayout = (props) => {
           title: 'Product Report',
           icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
           url: '/ProductReportPage',
-        },
-        {
-          title: 'Purchase Report',
-          icon: <BsCircle size={16} className="side-bar-subitem-icon" />,
-          url: '/PurchaseReportPage',
-        },
+        }
       ],
     },
   ];

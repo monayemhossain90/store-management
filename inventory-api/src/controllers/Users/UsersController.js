@@ -14,13 +14,11 @@ const SignUpVerifyOtpService = require("../../services/SignUpWithEmailVerify/Sig
 
 
 exports.Registration=async (req, res) => {
-    let Result=await UserCreateService(req,UsersModel)
-    res.status(200).json(Result)
+  await UserCreateService(req,res,UsersModel)
 }
 
 exports.Login=async(req,res)=>{
-    let Result=await UserLoginService(req,UsersModel)
-    res.status(200).json(Result)
+    await UserLoginService(req,res,UsersModel)
 }
 
 exports.ProfileUpdate=async (req, res) => {
@@ -56,20 +54,13 @@ exports.CreateNewPassword=async (req,res)=>{
 
 //SignUpUser Email Verify--Step-01//OTP-Send
 exports.SignUpEmailVerify = async (req,res)=> {
-
-    let Result=await SignUpEmailVerifyService(req,UsersModel,RegOTPModel)
-    res.status(200).json(Result)
-
-
+    await SignUpEmailVerifyService(req,res,UsersModel,RegOTPModel)
 }
 
 
 //SignUp//SignUpVerifyOTP--Step-02--DataInsert-
 exports.SignUpVerifyOTP = async (req,res)=>{
-
-    let Result = await SignUpVerifyOtpService(req,UsersModel,RegOTPModel)
-     res.status(200).json(Result)
-
+    await SignUpVerifyOtpService(req,res,UsersModel,RegOTPModel)
 }
 
 

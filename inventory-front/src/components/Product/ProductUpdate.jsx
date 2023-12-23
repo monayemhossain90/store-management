@@ -14,9 +14,9 @@ import {useNavigate} from "react-router-dom";
 
 const ProductUpdate = ({id}) => {
 
-    let productNameRef,brandIdRef, categoryIdRef, unitRef,detailsRef,ProcessingBtnRef = useRef();
+    let productNameRef,brandIdRef, categoryIdRef, unitRef,priceRef, detailsRef,ProcessingBtnRef = useRef();
     let navigate = useNavigate();
-    const {ProductName, CategoryID, BrandID, Unit, Details} = useSelector((state)=> state.product.ProductData) || {};
+    const {ProductName, CategoryID, BrandID, Unit, Price, Details} = useSelector((state)=> state.product.ProductData) || {};
     let ProductBrandDropDown = useSelector(selectProductBrandDropDown);
     let ProductCategoryDropDown = useSelector(selectProductCategoryDropDown);
 
@@ -37,6 +37,7 @@ const ProductUpdate = ({id}) => {
         let brandID = brandIdRef.value.trim();
         let categoryID = categoryIdRef.value.trim();
         let unit = unitRef.value.trim();
+        let price = priceRef.value.trim();
         let details = detailsRef.value.trim();
 
         if(IsEmpty(productName)){
@@ -51,11 +52,14 @@ const ProductUpdate = ({id}) => {
         else if(IsEmpty(unit)){
             ErrorToast("Product Unit Required !")
         }
+        else if(IsEmpty(price)){
+            ErrorToast("Product Price Required !")
+        }
         else if(IsEmpty(details)){
             ErrorToast("Product Details Required !")
         }
         else{
-            let result = await UpdateProductRequest(productName,brandID,categoryID,unit,details,id,ProcessingBtnRef);
+            let result = await UpdateProductRequest(productName,brandID,categoryID,unit,price,details,id,ProcessingBtnRef);
             if(result===true){
                navigate('/ProductListPage');
             }
@@ -109,6 +113,10 @@ const ProductUpdate = ({id}) => {
                                     <div className="col-4 p-2">
                                         <label className="form-label">Unit</label>
                                         <input key={Date.now()} defaultValue={Unit} ref={(input)=>unitRef=input} className="form-control form-control-sm" type="text"/>
+                                    </div>
+                                    <div className="col-4 p-2">
+                                        <label className="form-label">Price</label>
+                                        <input key={Date.now()} defaultValue={Price} ref={(input)=>priceRef=input} className="form-control form-control-sm" type="number"/>
                                     </div>
 
                                     <div className="col-4 p-2">

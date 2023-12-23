@@ -113,3 +113,21 @@ td div {
   text-align: left !important;
   padding-left: 50px !important;
 }
+
+.search-box{
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+.products{
+ background-color: #99338ee8 !important;
+}
+
+.store-value{
+  background-color: #008000c7 !important;
+}
+
+.categories{
+  background-color: #0064ff87 !important;
+}
+/**/

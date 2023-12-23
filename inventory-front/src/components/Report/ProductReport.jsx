@@ -31,7 +31,9 @@ const ProductReport = () => {
                 let listItem={
                     "Product":item['ProductName'],
                     "Unit":item['Unit'],
-                    "Details":item['Details'],
+                    "Price": item['Price'],
+                    "Brand": item['BrandName'],
+                    "Category": item['CategoryName'],
                     "Date":moment(item['updatedAt']).format('MMMM Do YYYY')
                 }
                 ReportData.push(listItem)
