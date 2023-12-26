@@ -30,12 +30,12 @@ const ProductListItem = ({item, perPage, searchKeyword}) => {
         <>
 
             <tr>
-                <td><p className="text-xs text-start">{ProductName}</p></td>
-                <td><p className="text-xs text-start">{Unit}</p></td>
-                <td><p className="text-xs text-start">{Price}</p></td>
-                <td><p className="text-xs text-start">{Number(Unit *Price)}</p></td>
-                <td><p className="text-xs text-start">{BrandName}</p></td>
-                <td><p className="text-xs text-start">{CategoryName}</p></td>
+                <td><p className="text-s text-start">{ProductName}</p></td>
+                <td><p className="text-s text-start">{Unit}</p></td>
+                <td><p className="text-s text-start">{Price}</p></td>
+                <td><p className="text-s text-start">{Number(Unit *Price)}</p></td>
+                <td><p className="text-s text-start">{BrandName}</p></td>
+                <td><p className="text-s text-start">{CategoryName}</p></td>
                 <td>
                     <Link to={`/ProductUpdatePage/${_id}`} className="btn text-info btn-outline-light p-2 mb-0 btn-sm">
                         <AiOutlineEdit size={15} />

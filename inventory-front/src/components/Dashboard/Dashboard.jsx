@@ -178,7 +178,7 @@ const Dashboard = () => {
            <Fragment>
                <div className="container-fluid">
                    <div className="row">
-                       <h3>Inventory States</h3>
+                       <h3 style={{marginTop:"30px"}}>Inventory States</h3>
                        <div className="col-md-4 p-2">
                            <div className="card products text-white">
                                <div className="card-body d-flex align-items-center gap-3">
@@ -224,13 +224,13 @@ const Dashboard = () => {
                    </div>
                    <div className="row mt-5">
                        <div className="col-12 d-flex align-items-center justify-content-between py-4">
-                           <h3>Inventory Items</h3>
+                       
                            <div className="d-flex gap-5">
                                <div>
                                    <button onClick={ShowAllProducts} className="btn btn-success">Show all products</button>
                                </div>
                                <div>
-                                   Search by date:
+                                   Search by date:  
                                    <input
                                        onChange={(e)=>handleSearchProductByDate(e.target.value)}
                                        className="px-3 py-2 search-box"

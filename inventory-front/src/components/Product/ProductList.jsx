@@ -88,14 +88,14 @@ const ProductList = () => {
                                                 <table className="table ">
                                                     <thead className="sticky-top bg-white">
                                                         <tr>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</td>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Unit</td>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</td>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total</td>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Brand</td>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Categories</td>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</td>
-                                                            <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Issue/Stock</td>
+                                                            <td className="text-uppercase text-primary text-s font-weight-bolder opacity-7">Name</td>
+                                                            <td className="text-uppercase text-success text-s font-weight-bolder opacity-7">Unit</td>
+                                                            <td className="text-uppercase text-danger text-s font-weight-bolder opacity-7">Price</td>
+                                                            <td className="text-uppercase text-primary text-s font-weight-bolder opacity-7">Total</td>
+                                                            <td className="text-uppercase text-success text-s font-weight-bolder opacity-7">Brand</td>
+                                                            <td className="text-uppercase text-danger text-s font-weight-bolder opacity-7">Categories</td>
+                                                            <td className="text-uppercase text-primary text-s font-weight-bolder opacity-7">Action</td>
+                                                            <td className="text-uppercase text-success text-s font-weight-bolder opacity-7">Issue/Stock</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

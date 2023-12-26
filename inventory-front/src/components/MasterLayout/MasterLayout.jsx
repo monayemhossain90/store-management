@@ -129,6 +129,12 @@ const MasterLayout = (props) => {
                 <h4 className="text-white m-0 p-0"><a onClick={MenuBarClickHandler}><AiOutlineMenu /></a></h4>
               </div>
             </Navbar.Brand>
+            <div>
+            <h3 style={{color:"orange"}}>Bangladesh Forest Industry Development Corporation</h3> 
+           <div style={{textAlign:'center'}}>
+           <h6 style={{color:"yellow"}}>Store Management System</h6>
+           </div>
+            </div>
 
             <div className="float-right h-auto d-flex align-items-center">
               <div className="user-dropdown">
