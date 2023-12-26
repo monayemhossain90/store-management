@@ -13,6 +13,7 @@ const ProductReport = () => {
 
     const CreateReport = async () => {
         let fromDate = fromRef.value;
+        console.log(fromDate)
         let toDate = toRef.value;
         if (IsEmpty(fromDate)) {
             ErrorToast("From Date Required")
@@ -34,7 +35,7 @@ const ProductReport = () => {
                     "Price": item['Price'],
                     "Brand": item['BrandName'],
                     "Category": item['CategoryName'],
-                    "Date":moment(item['updatedAt']).format('MMMM Do YYYY')
+                    "Date":moment(item['createdAt']).format('MMMM Do YYYY')
                 }
                 ReportData.push(listItem)
             })

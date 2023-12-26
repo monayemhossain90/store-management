@@ -4,7 +4,11 @@ import CurrencyFormat from 'react-currency-format';
 import {selectProducts, selectStoreValue} from "../../redux/state-slice/productSlice.js";
 import {AiFillDelete} from "react-icons/ai";
 import {Table} from "antd";
-import {DeleteProductRequest, GetAllProductsRequest} from "../../ApiServices/ProductApiRequest.js";
+import {
+    DeleteProductRequest,
+    GetAllProductsRequest,
+    SearchProductsByDateRequest
+} from "../../ApiServices/ProductApiRequest.js";
 import {FaRegEdit} from "react-icons/fa";
 import {BsCart4} from "react-icons/bs";
 import {TbCoinTaka} from "react-icons/tb";
@@ -157,6 +161,17 @@ const Dashboard = () => {
     }
 
 
+    const ShowAllProducts = async () => {
+        await GetAllProductsRequest("0");
+    }
+
+
+    //SearchProductByDate
+    const handleSearchProductByDate = async (date) => {
+        if(date !==""){
+            await SearchProductsByDateRequest(date);
+        }
+    }
 
 
     return (
@@ -210,9 +225,22 @@ const Dashboard = () => {
                    <div className="row mt-5">
                        <div className="col-12 d-flex align-items-center justify-content-between py-4">
                            <h3>Inventory Items</h3>
-                            <div>
-                                <input value={searchKeyword==="0" ? "" : searchKeyword} onChange={searchKeywordOnChange} className="px-3 py-2 search-box" type="text" placeholder="Search by name"/>
-                            </div>
+                           <div className="d-flex gap-5">
+                               <div>
+                                   <button onClick={ShowAllProducts} className="btn btn-success">Show all products</button>
+                               </div>
+                               <div>
+                                   Search by date:
+                                   <input
+                                       onChange={(e)=>handleSearchProductByDate(e.target.value)}
+                                       className="px-3 py-2 search-box"
+                                       type="date"
+                                   />
+                               </div>
+                               <div>
+                                   <input value={searchKeyword==="0" ? "" : searchKeyword} onChange={searchKeywordOnChange} className="px-3 py-2 search-box" type="text" placeholder="Search by name"/>
+                               </div>
+                           </div>
                        </div>
                        <div className="col-12">
                            <Table columns={columns} dataSource={tableData} />
@@ -220,8 +248,8 @@ const Dashboard = () => {
                    </div>
                </div>
 
-               <AddModal2 />
-               <MinusModal2 />
+               <AddModal2 searchKeyword={searchKeyword}/>
+               <MinusModal2 searchKeyword={searchKeyword}/>
            </Fragment>
     );
 };

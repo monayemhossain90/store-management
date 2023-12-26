@@ -8,7 +8,7 @@ import {useState} from "react";
 import {ErrorToast} from "../../helper/ValidationHelper.js";
 import {GetAllProductsRequest, UpdateStockRequest} from "../../ApiServices/ProductApiRequest.js";
 
-const AddModal2 = () => {
+const AddModal2 = ({searchKeyword}) => {
     const dispatch = useDispatch();
     const AddModalShow = useSelector(selectAddModalShow2);
     const ProductID = useSelector(selectProductID);
@@ -31,7 +31,7 @@ const AddModal2 = () => {
             if(result===true){
                 setUnit(0);
                 dispatch(SetAddModalShow2(false))
-                await GetAllProductsRequest();
+                await GetAllProductsRequest(searchKeyword);
             }
         }
     }

@@ -9,7 +9,7 @@ import {useState} from "react";
 import {ErrorToast} from "../../helper/ValidationHelper.js";
 import {GetAllProductsRequest,UpdateStockRequest} from "../../ApiServices/ProductApiRequest.js";
 
-const MinusModal2 = () => {
+const MinusModal2 = ({searchKeyword}) => {
     const dispatch = useDispatch();
     const MinusModalShow = useSelector(selectMinusModalShow2);
     const ProductID = useSelector(selectProductID);
@@ -32,7 +32,7 @@ const MinusModal2 = () => {
             if(result===true){
                 setUnit(0);
                 dispatch(SetMinusModalShow2(false))
-                await GetAllProductsRequest();
+                await GetAllProductsRequest(searchKeyword);
             }
         }
     }

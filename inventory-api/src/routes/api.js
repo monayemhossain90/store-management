@@ -68,6 +68,7 @@ router.get("/ProductsDropDown",AuthVerifyMiddleware,ProductsController.ProductsD
 router.post("/ProductsReportByDate",AuthVerifyMiddleware,ProductsController.ProductsReportByDate);
 router.get("/GetAllProducts/:searchKeyword",AuthVerifyMiddleware,ProductsController.GetAllProducts);
 
+router.get("/SearchProductByDate/:date",AuthVerifyMiddleware,ProductsController.SearchProductByDate);
 
 
 

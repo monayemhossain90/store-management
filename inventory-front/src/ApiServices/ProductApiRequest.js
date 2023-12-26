@@ -20,7 +20,6 @@ export async function ProductListRequest(pageNo, perPage, searchKeyword) {
         store.dispatch(HideLoader())
         if (result.status === 200 && result.data['status'] === "success") {
             if (result.data['data'][0]['Rows'].length > 0) {
-                console.log(result.data['data'][0]['Rows']);
                 store.dispatch(SetProductList(result.data['data'][0]['Rows']))
                 store.dispatch(SetProductListTotal(result.data['data'][0]['Total'][0]['count']))
             } else {
@@ -281,6 +280,34 @@ export async function GetAllProductsRequest(searchKeyword) {
 
 
 
+
+export async function SearchProductsByDateRequest(date) {
+    try {
+        store.dispatch(ShowLoader())
+        let URL = BaseURL+"/SearchProductByDate/"+date;
+        const res = await axios.get(URL,AxiosHeader)
+        store.dispatch(HideLoader())
+        if (res.status === 200) {
+            if (res.data['data'].length > 0) {
+                store.dispatch(SetProducts(res.data['data']))
+            } else {
+                store.dispatch(SetProducts([]))
+            }
+        }
+    }
+    catch (e) {
+        store.dispatch(HideLoader())
+        if(e['message'] === "Request failed with status code 401"){
+            ErrorToast("Token Authorized");
+            localStorage.clear();
+            setTimeout(()=>{
+                window.location.href="/Login"
+            },500)
+        }else{
+            ErrorToast("Something Went Wrong");
+        }
+    }
+}
 
 
 

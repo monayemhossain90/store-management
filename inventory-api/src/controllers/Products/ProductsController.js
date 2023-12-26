@@ -7,6 +7,7 @@ const DropDownService = require("../../services/common/DropDownService");
 const ProductReportService = require("../../services/report/ProductReportService");
 const UpdateProductService = require("../../services/product/UpdateProductService");
 const GetAllProductsService = require("../../services/product/GetAllProductsService");
+const SearchProductByDateService = require("../../services/product/SearchProductByDateService");
 
 
 exports.CreateProduct=async (req, res) => {
@@ -59,4 +60,7 @@ exports.GetAllProducts=async (req, res) => {
 }
 
 
+exports.SearchProductByDate=async (req, res) => {
+    await SearchProductByDateService(req,res, ProductsModel)
+}
 
